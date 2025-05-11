@@ -4,7 +4,7 @@ from app.db.mongo import client
 async def ping():
     try:
         await client.admin.command("ping")
-        print("connected to MongoDB successfully!")
+        print(":) connected to MongoDB successfully!")
     except Exception as e:
         print("damn failed to connect:", e)
 

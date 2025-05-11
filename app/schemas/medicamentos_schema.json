@@ -1,0 +1,22 @@
+{
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["nombre", "fabricante"],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId",
+            "description": "ID del medicamento, debe ser un ObjectId"
+          },
+          "nombre": {
+            "bsonType": "string",
+            "description": "Nombre del medicamento, debe ser un string"
+          },
+          "fabricante": {
+            "bsonType": "string",
+            "description": "Fabricante del medicamento, debe ser un string"
+          }
+        }
+      }
+    }
+  }

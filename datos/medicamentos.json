@@ -1,0 +1,17 @@
+[
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c21"},
+      "nombre": "Noxpirin",
+      "fabricante": "Laboratorios Siegried"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c22"},
+      "nombre": "Dolex",
+      "fabricante": "GlaxoSmithKline"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c23"},
+      "nombre": "Advil",
+      "fabricante": "Pfizer"
+    }
+  ]

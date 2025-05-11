@@ -1,0 +1,30 @@
+[
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1a"},
+      "nombre": "Acetaminofén"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1b"},
+      "nombre": "Cetirizina"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1c"},
+      "nombre": "Cafeína"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1d"},
+      "nombre": "Fenilefrina Clorhidrato"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1e"},
+      "nombre": "Ibuprofeno"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c1f"},
+      "nombre": "Loratadina"
+    },
+    {
+      "_id": {"$oid": "60d21b4f67d0d8992e610c20"},
+      "nombre": "Diclofenaco Sódico"
+    }
+  ]

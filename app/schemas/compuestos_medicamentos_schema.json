@@ -1,0 +1,30 @@
+{
+    "validator": {
+      "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["compuesto_id", "medicamento_id", "concentracion", "unidad_medida"],
+        "properties": {
+          "_id": {
+            "bsonType": "objectId",
+            "description": "ID de la relación, debe ser un ObjectId"
+          },
+          "compuesto_id": {
+            "bsonType": "objectId",
+            "description": "ID del compuesto, debe ser un ObjectId"
+          },
+          "medicamento_id": {
+            "bsonType": "objectId",
+            "description": "ID del medicamento, debe ser un ObjectId"
+          },
+          "concentracion": {
+            "bsonType": "number",
+            "description": "Concentración del compuesto en el medicamento, debe ser un número"
+          },
+          "unidad_medida": {
+            "bsonType": "string",
+            "description": "Unidad de medida de la concentración, debe ser un string"
+          }
+        }
+      }
+    }
+  }
