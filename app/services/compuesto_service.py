@@ -1,91 +1,88 @@
-from typing import List, Dict, Optional, Any
+from typing import List, Optional, Dict, Any
 from fastapi import HTTPException, status
-from app.models.compuesto import compuesto
-from app.repositories.compuesto_repo import compuesto_repo
-from app.repositories.compuesto_por_medicamento_repo import compuesto_por_medicamento_repo
+from app.models.compuesto import Compuesto
+from app.repositories.compuesto_repo import CompuestoRepository
+from app.repositories.compuesto_por_medicamento_repo import CompuestoPorMedicamentoRepository
 
 class CompuestoService:
-    """"Clase de servicio para manejar la lógica de negocio relacionada con los compuestos."""
-
+    """Service class for Compuesto business logic"""
+    
     @staticmethod
-    async def get_all_compuestos() -> List[compuesto]:
-        """Obtiene todos los compuestos de la base de datos."""
-        return await compuesto_repo.get_all_compuestos()
-
+    async def get_all_compuestos() -> List[Compuesto]:
+        """Get all compuestos"""
+        return await CompuestoRepository.get_all()
+    
     @staticmethod
-    async def get_compuesto_by_id(compuesto_id:str) -> compuesto:
-        """Obtiene un compuesto por su ID."""
-        compuesto = await compuesto_repo.get_by_id(compuesto_id)
+    async def get_compuesto_by_id(compuesto_id: str) -> Compuesto:
+        """Get a compuesto by ID with validation"""
+        compuesto = await CompuestoRepository.get_by_id(compuesto_id)
         if not compuesto:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Compuesto con ID {compuesto_id} no encontrado"
+                detail=f"Compuesto with ID {compuesto_id} not found"
             )
         return compuesto
     
     @staticmethod
-    async def create_compuesto(compuesto: compuesto) -> compuesto:
-        """Crea un nuevo compuesto en la base de datos."""
-        #validar que el nombre no es vacio
+    async def create_compuesto(compuesto: Compuesto) -> Compuesto:
+        """Create a new compuesto with validation"""
         if not compuesto.nombre or compuesto.nombre.strip() == "":
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="El nombre del compuesto no puede estar vacío"
+                detail="Compuesto name cannot be empty"
             )
-        return await compuesto_repo.create(compuesto)
+        
+        return await CompuestoRepository.create(compuesto)
     
     @staticmethod
-    async def update_compuesto(compuesto_id: str, compuesto: compuesto) -> compuesto:
-        """Actualiza un compuesto existente en la base de datos."""
-        #valida que el compuesto existe
-        existing_compuesto = await compuesto_repo.get_by_id(compuesto_id)
+    async def update_compuesto(compuesto_id: str, compuesto: Compuesto) -> Compuesto:
+        """Update an existing compuesto with validation"""
+        existing_compuesto = await CompuestoRepository.get_by_id(compuesto_id)
         if not existing_compuesto:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Compuesto con ID {compuesto_id} no encontrado"
+                detail=f"Compuesto with ID {compuesto_id} not found"
             )
         
-
-        #valida que el nombre no es vacio
         if not compuesto.nombre or compuesto.nombre.strip() == "":
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="El nombre del compuesto no puede estar vacío"
+                detail="Compuesto name cannot be empty"
             )
         
-        return await compuesto_repo.update(compuesto_id, compuesto)
+        return await CompuestoRepository.update(compuesto_id, compuesto)
     
     @staticmethod
-    async def delete_compuesto(compuesto_id: str) -> Dict[str,Any]:
-        """Elimina un compuesto de la base de datos."""
-        #valida que el compuesto existe
-        existing_compuesto = await compuesto_repo.get_by_id(compuesto_id)
+    async def delete_compuesto(compuesto_id: str) -> Dict[str, Any]:
+        """Delete a compuesto with validation and cascade deletion"""
+        existing_compuesto = await CompuestoRepository.get_by_id(compuesto_id)
         if not existing_compuesto:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Compuesto con ID {compuesto_id} no encontrado"
+                detail=f"Compuesto with ID {compuesto_id} not found"
             )
         
-       # borrar las relaciones asociadas primero
-        deleted_relations = await compuesto_por_medicamento_repo.delete_by_compuesto_id(compuesto_id)
+        # borrrar las relaciones con medicamentos
+        deleted_relations = await CompuestoPorMedicamentoRepository.delete_by_compuesto_id(compuesto_id)
         
-        #borrar el compuesto
-        result = await compuesto_repo.delete(compuesto_id)
-
+        # borrar el compuesto
+        result = await CompuestoRepository.delete(compuesto_id)
+        
         return {
             "deleted": result,
-            "compuesto_id": compuesto_id,
+            "id": compuesto_id,
             "related_records_deleted": deleted_relations
         }
     
     @staticmethod
     async def get_medicamentos_by_compuesto(compuesto_id: str) -> List[Dict[str, Any]]:
         """Get all medicamentos that contain this compuesto"""
-        existing_compuesto = await compuesto_repo.get_by_id(compuesto_id)
+        # verificar que el compuesto existe
+        existing_compuesto = await CompuestoRepository.get_by_id(compuesto_id)
         if not existing_compuesto:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"Compuesto con ID {compuesto_id} no encontrado"
+                detail=f"Compuesto with ID {compuesto_id} not found"
             )
         
-        return await compuesto_repo.get_medicamentos_by_compuesto_id(compuesto_id)
+        return await CompuestoRepository.get_medicamentos_by_compuesto_id(compuesto_id)
