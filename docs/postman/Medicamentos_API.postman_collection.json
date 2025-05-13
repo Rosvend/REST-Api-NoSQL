@@ -1,0 +1,353 @@
+{
+	"info": {
+		"_postman_id": "f1b25c39-8d77-4838-9e46-d5f2ab9e1e92",
+		"name": "Medicamentos API",
+		"description": "API for managing medications and their compounds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Medicamentos",
+			"item": [
+				{
+					"name": "Get All Medicamentos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos"
+							]
+						},
+						"description": "Obtiene todos los medicamentos"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medicamento by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos/60d21b4f67d0d8992e610c21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos",
+								"60d21b4f67d0d8992e610c21"
+							]
+						},
+						"description": "Obtiene un medicamento específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Compuestos by Medicamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos/60d21b4f67d0d8992e610c21/compuestos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos",
+								"60d21b4f67d0d8992e610c21",
+								"compuestos"
+							]
+						},
+						"description": "Obtiene todos los compuestos de un medicamento específico"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Medicamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Paracetamol Forte\",\n    \"fabricante\": \"Laboratorios XYZ\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos"
+							]
+						},
+						"description": "Crea un nuevo medicamento"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Compuesto to Medicamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"compuesto_id\": \"60d21b4f67d0d8992e610c1a\",\n    \"concentracion\": 500,\n    \"unidad\": \"mg\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos/60d21b4f67d0d8992e610c21/compuestos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos",
+								"60d21b4f67d0d8992e610c21",
+								"compuestos"
+							]
+						},
+						"description": "Agrega un compuesto a un medicamento específico"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Medicamento",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Noxpirin Plus\",\n    \"fabricante\": \"Laboratorios Siegried\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos/60d21b4f67d0d8992e610c21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos",
+								"60d21b4f67d0d8992e610c21"
+							]
+						},
+						"description": "Actualiza un medicamento existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Medicamento",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/medicamentos/60d21b4f67d0d8992e610c21",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"medicamentos",
+								"60d21b4f67d0d8992e610c21"
+							]
+						},
+						"description": "Elimina un medicamento y sus relaciones"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con los medicamentos"
+		},
+		{
+			"name": "Compuestos",
+			"item": [
+				{
+					"name": "Get All Compuestos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos"
+							]
+						},
+						"description": "Obtiene todos los compuestos"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Compuesto by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos/60d21b4f67d0d8992e610c1a",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos",
+								"60d21b4f67d0d8992e610c1a"
+							]
+						},
+						"description": "Obtiene un compuesto específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Medicamentos by Compuesto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos/60d21b4f67d0d8992e610c1a/medicamentos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos",
+								"60d21b4f67d0d8992e610c1a",
+								"medicamentos"
+							]
+						},
+						"description": "Obtiene todos los medicamentos que contienen un compuesto específico"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Compuesto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Naproxeno\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos"
+							]
+						},
+						"description": "Crea un nuevo compuesto"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Compuesto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Acetaminofén Plus\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos/60d21b4f67d0d8992e610c1a",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos",
+								"60d21b4f67d0d8992e610c1a"
+							]
+						},
+						"description": "Actualiza un compuesto existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Compuesto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/compuestos/60d21b4f67d0d8992e610c1f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"compuestos",
+								"60d21b4f67d0d8992e610c1f"
+							]
+						},
+						"description": "Elimina un compuesto y sus relaciones"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints relacionados con los compuestos"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
