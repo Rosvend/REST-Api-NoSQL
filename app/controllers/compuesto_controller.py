@@ -4,7 +4,7 @@ from app.models.compuesto import Compuesto
 from app.services.compuesto_service import CompuestoService
 
 
-router = APIRouter(prefix="api/compuestos", tags=["compuestos"])
+router = APIRouter(prefix="/api/compuestos", tags=["compuestos"])
 
 @router.get("/",response_model=List[Compuesto],status_code=status.HTTP_200_OK)
 async def get_all_compuestos() -> List[Compuesto]:
