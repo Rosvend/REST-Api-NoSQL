@@ -1,4 +1,4 @@
-# API de Medicamentos y Compuestos
+# API REST de Medicamentos y Compuestos
 
 Proyecto para la asignatura de Tópicos Avanzados de Base de Datos (TADB) - Examen No. 4
 
@@ -38,17 +38,19 @@ tadb_202510_ex04/
 │   ├── db/
 │   │   ├── mongo.py
 │   │   └── scripts/
-│   │       └── create_collections.py
+│   │       ├── create_collections.py
+|   |       ├── import_data.py
 │   ├── schemas/
 │   │   ├── compuesto_medicamentos_schema.py
 │   │   ├── compuestos_schema.json
 │   │   └── medicamentos_schema.json
-│   ├── routes/
-|   |   └── routes_example.py
 |   ├── datos/
-│       ├── compuestos.json
-│       ├── medicamentos.json
-│       └── compuestos_medicamentos.json
+│   |   ├── compuestos.json
+│   |   ├── medicamentos.json
+│   |   └── compuestos_medicamentos.json
+|   ├── docs/
+|   |   └── postman/
+│   |       └── Medicamentos_API_postman_collection.json
 ├── ping_db.py
 ├── README.md
 ├── requirements.txt
@@ -67,7 +69,7 @@ tadb_202510_ex04/
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/su-usuario/tadb_202510_ex04.git
+git clone https://github.com/rosvend/tadb_202510_ex04.git
 cd tadb_202510_ex04
 ```
 
