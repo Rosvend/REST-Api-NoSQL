@@ -26,7 +26,7 @@ async def create_medicamento(medicamento: Medicamento):
     """Endpoint para crear un nuevo medicamento"""
     return await MedicamentoService.create_medicamento(medicamento)
 
-@router.post("/{medicamento_id}/compuestos", status_code=status.HTTP_201_CREATED)
+@router.post("/{medicamento_id}/compuestos", response_model=Dict[str, Any], status_code=status.HTTP_201_CREATED)
 async def add_compuesto_to_medicamento(
     medicamento_id: str,
     compuesto_id: str = Body(..., embed=True),
@@ -34,9 +34,20 @@ async def add_compuesto_to_medicamento(
     unidad: str = Body(..., embed=True)
 ):
     """Endpoint para agregar un compuesto a un medicamento"""
-    return await MedicamentoService.add_compuesto_to_medicamento(
+    result = await MedicamentoService.add_compuesto_to_medicamento(
         medicamento_id, compuesto_id, concentracion, unidad
     )
+    # Convert to a dictionary with clear field names for better response
+    if result:
+        return {
+            "success": True,
+            "message": "Compuesto added to medicamento successfully",
+            "compuesto_id": compuesto_id,
+            "medicamento_id": medicamento_id,
+            "concentracion": concentracion,
+            "unidad_medida": unidad
+        }
+    return {"success": False, "message": "Failed to add compuesto to medicamento"}
 
 @router.put("/{medicamento_id}", response_model=Medicamento, status_code=status.HTTP_200_OK)
 async def update_medicamento(medicamento_id: str, medicamento: Medicamento):
